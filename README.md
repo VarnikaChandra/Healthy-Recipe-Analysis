@@ -40,7 +40,7 @@ To prepare the dataset for analysis, I performed numerous cleaning and transform
 
 🔗 [Click here to view full dataset preview (HTML)](preview_table.html)
 
-###Univariate Analysis
+### Univariate Analysis
 **Protein Levels Across Healthy Recipes**
 <iframe
   src="assets/protein_dist.html"
