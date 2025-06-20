@@ -6,7 +6,6 @@ _A project for EECS 398 at the University of Michigan_
 This project explores the question: What makes a recipe “healthy”? Using a dataset scraped from Food.com, which includes thousands of recipes and user reviews from 2008 onward, I aim to understand which features—such as nutritional content, preparation time, and number of ingredients—are most associated with user satisfaction on recipes labeled as “healthy.” The dataset includes two key files: RAW_recipes.csv, which contains 83,782 recipes with columns like name, minutes, tags, nutrition, n_steps, and n_ingredients; and RAW_interactions.csv, which includes 731,927 user interactions with columns such as user_id, recipe_id, rating, and review. With the rise of popular diets promoted through social media—such as anti-inflammatory, keto, and high-protein—this analysis aims to identify the traits that define healthy, well-rated recipes. The findings could inform health-conscious users, or work as a recommendation system on what factors contribute to perceived healthiness and satisfaction.
 
 ## Data Cleaning and Exploratory Data Analysis  
-## Data Cleaning and Exploratory Data Analysis  
 
 To prepare the dataset for analysis, I performed numerous cleaning and transformation steps across both the recipes and user interaction files:
 
@@ -40,6 +39,16 @@ To prepare the dataset for analysis, I performed numerous cleaning and transform
 | 2000 meatloaf                 | 475785    | 90      | 13             | 267.0    | 4.0         | 0                |
 
 🔗 [Click here to view full dataset preview (HTML)](preview_table.html)
+
+###Univariate Analysis
+**Protein Levels Across Healthy Recipes**
+<iframe
+  src="assets/protein_dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+This histogram displays the distribution of protein content in health-tagged recipes. The distribution is right-skewed, with most recipes containing under 20 grams of protein, suggesting that while high-protein options exist, the majority of "healthy" recipes on the platform tend to be lower in protein.
 
 
 ## Framing a Prediction Problem  
