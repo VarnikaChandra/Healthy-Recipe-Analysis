@@ -1,0 +1,21 @@
+title: Recipes_and_Ratings_Analysis
+baseurl: "" # leave blank for GitHub Pages
+url: "https://varnikachandra.github.io/Recipes_and_Ratings_Analysis/"
+
+theme: minima
+
+header_pages:
+  - about.md
+  - portfolio.md  # add/remove files based on your actual site pages
+
+minima:
+  date_format: "%b %-d, %Y"  # shows like "Jan 1, 2025"
+
+# Enable Disqus (optional)
+disqus:
+  shortname: your_disqus_shortname  # only if you're using Disqus
+
+# Optional GitHub Pages setting
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
