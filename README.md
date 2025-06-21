@@ -48,17 +48,34 @@ To prepare the dataset for analysis, I performed numerous cleaning and transform
   height="600"
   frameborder="0"
 ></iframe>
+
 This histogram displays the distribution of protein content in health-tagged recipes. The distribution is right-skewed, with most recipes containing under 20 grams of protein, suggesting that while high-protein options exist, the majority of "healthy" recipes on the platform tend to be lower in protein.
+
+### Bivariate Analysis
+<iframe
+  src="assets/rating_healthy_v_unhealthy.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+### Interesting Aggregations 
+To examine whether recipes labeled as healthy differ nutritionally from others, I grouped the dataset by the is_health_tagged column and calculated the average values for key nutritional attributes: calories, total fat, sugar, and protein. The results show that healthy-tagged recipes tend to have slightly lower calories (419.87 vs. 430.71) and total fat (31.41g vs. 32.90g) compared to those not labeled as healthy, aligning with general expectations. However, the average sugar content is actually higher in healthy recipes (68.77g vs. 67.33g), which is unexpected. Additionally, non-healthy recipes show a slightly higher protein content on average (33.39g vs. 31.95g). These findings indicate that the trendy “healthy” tags may reflect specific dietary trends or labeling practices rather than consistent improvements across all nutritional metrics.
+
 
 
 ## Framing a Prediction Problem  
-[Describe the classification problem: predicting whether a recipe will be labeled as "healthy".  
-Include the target variable and input features, and your reasoning.]
+For this project, I aim to predict whether a recipe is labeled as “healthy” based on its ingredients and nutritional information. This is a binary classification problem, where the response variable is is_health_tagged (1 if the recipe is marked as healthy, 0 otherwise). The goal is to build a predictive model, as the features I use such as ingredient lists and nutritional attributes like calories, total fat, and sugar are all available at the time a recipe is submitted and therefore realistic inputs at prediction time.
+I selected this problem because it connects directly to my earlier exploratory analysis on what makes a recipe “healthy.” By building a model to predict health tags, I can evaluate which features are most predictive and assess the feasibility of automating health-related tagging on recipe platforms.
+To evaluate my model’s performance, I plan to use the F1-score as my primary metric. While accuracy can provide a high-level sense of model performance, the dataset may be imbalanced (e.g., fewer healthy recipes than unhealthy ones), and in such cases, F1-score offers a more balanced measure by accounting for both precision and recall.
+
+
 
 ## Baseline Model  
-[Describe your baseline pipeline, which features you used, what model, and how it performed (e.g., F1 score, accuracy).  
-Include the classification report as a code block.]
+For my baseline model, I implemented a logistic regression classifier to predict whether a recipe is labeled as “healthy” (is_health_tagged) based on two features: calories and protein. Both features are quantitative (continuous numerical variables), and no ordinal or nominal features were included at this stage. I standardized these numerical features using StandardScaler to ensure they were on the same scale before model training. The model was implemented using an sklearn Pipeline that combines preprocessing with classification. To address the class imbalance between healthy and non-healthy recipes, I used the class_weight='balanced' parameter in LogisticRegression. On the test set, the model achieved an F1 score of approximately 0.33 for the positive class (healthy recipes). Although the accuracy was low (43%), the F1 score provides a better evaluation for this imbalanced classification task. Overall, I consider this model a reasonable starting point  it captures some signal, especially in terms of recall for the healthy class (0.67), but its precision and overall performance indicate there is significant room for improvement by incorporating additional features and more complex modeling techniques in the final model.
+
 
 ## Final Model  
-[Describe the final model, the features you engineered, why you engineered them, the model used, and the GridSearchCV results.  
-Include a confusion matrix plot using Plotly as an iframe and a summary of performance improvement.]
+
+For my final model, I selected four features: calories_per_ingredient, protein_per_calorie, sugar_per_calorie, and saturated_fat. These features were chosen because they better reflect how nutritional quality is assessed in real-world contexts. For example, protein_per_calorie captures the protein density of a recipe, a key factor in determining satiety and nutritional value, while sugar_per_calorie helps flag recipes that are disproportionately high in sugar relative to their calorie content. Calories_per_ingredient gives insight into how calorie-dense each component of the recipe is, which may distinguish simple, whole-food recipes from those that are overly processed. Saturated_fat was included due to its known association with diet-related health risks. I used a RandomForestClassifier for its ability to model nonlinear relationships and its robustness to feature scaling. I applied GridSearchCV to tune hyperparameters, testing different values for the number of trees (n_estimators) and maximum tree depth (max_depth). The best configuration found was 50 trees with no maximum depth. While the final model’s F1 score on the positive class (healthy recipes) remained low at approximately 0.05, this still marked an improvement over the baseline model, which failed to identify any healthy recipes at all. The increase in recall from 0.00 to 0.03 shows the model is beginning to capture the characteristics of healthy recipes, which is promising given the class imbalance. Overall, I believe this model reflects thoughtful feature engineering grounded in nutrition and improved upon the baseline in meaningful ways.
+
