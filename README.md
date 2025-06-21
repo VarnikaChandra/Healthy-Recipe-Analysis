@@ -1,8 +1,9 @@
 _A project for EECS 398 at the University of Michigan_  
 **By: Varnika Chandra – varnikac@umich.edu**  
+# A Data-Driven Approach to Healthy Recipe Ratings
 
 ## Introduction  
-*Anti-inflammatory*, *Keto*, *low-cal*, *sugar-free*, *high-protien diet*. You've probably many of these now trending diets on social media circulating, but what truly makes a recipe "healthy"? In this Project I aim to explore that question using a dataset scraped from Food.com, which includes thousands of recipes and user reviews. I wanted to understand which features—such as nutritional content, preparation time, and number of ingredients—are most associated with user satisfaction on recipes labeled as “healthy.” 
+"*Anti-inflammatory*, *Keto*, *low-cal*, *sugar-free*, *high-protien diet*." You've probably many of these now trending diets on social media circulating, but what truly makes a recipe "healthy"? In this Project I aim to explore that question using a dataset scraped from Food.com, which includes thousands of recipes and user reviews. I wanted to understand which features—such as nutritional content, preparation time, and number of ingredients—are most associated with user satisfaction on recipes labeled as “healthy.” 
 
 The dataset includes two files:  
 - `RAW_recipes.csv`: 83,782 recipes with columns like `name`, `minutes`, `tags`, `nutrition`, `n_steps`, and `n_ingredients`.  
